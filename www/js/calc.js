@@ -182,14 +182,16 @@ function print_units(uv, uname="GeV") {
 }
 
 function compute() {
-    form = document.getElementById("unitcalc")
+    valuedisplay = document.getElementById("display")
+    unitdisplay = document.getElementById("unitdisplay")
+    resultdisplay = document.getElementById("resultdisplay")
     try {
-	val = eval_tree(math.parse(form.display.value))
-	uname = form.unitdisplay.value
+	val = eval_tree(math.parse(valuedisplay.value))
+	uname = unitdisplay.value
 	u = eval_tree(math.parse(uname))
-	form.resultdisplay.value = print_units(gev_to_units(val,u),uname)
+	resultdisplay.value = print_units(gev_to_units(val,u),uname)
     } catch(err) {
-	form.resultdisplay.value = "Error: "+err
+	resultdisplay.value = "Error: "+err
     }
 }
 
@@ -208,6 +210,13 @@ function focusPressed(event) {
 function clickPressed(event) {
     cur_input = event.target
     cur_cursor = event.target.selectionStart
+    // document.getElementById('resultdisplay').value = "click"+String(cur_cursor)
+}
+
+function blurHandler(event) {
+    cur_input = event.target
+    cur_cursor = event.target.selectionStart
+    console.log('blur')
     // document.getElementById('resultdisplay').value = "click"+String(cur_cursor)
 }
 

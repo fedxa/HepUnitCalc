@@ -9,82 +9,63 @@
   <body>
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <!-- <script type="text/javascript" src="js/jquery-3.4.1.slim.min.js"></script> -->
-    <form id="unitcalc">
-      <table class="calculator">
-	<tr>
-	  <td colspan="5">
-	    <input id="display" name="display" value=""
-		   onkeydown="keyPressed(event);"
-		   oninput="inputPressed(event);"
-		   onclick="clickPressed(event);" />
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan="5">
-	    Convert to:
-	    <input id="unitdisplay" name="unitdisplay" value="GeV"
-		   onkeypress="keyPressed(event);"
-		   oninput="inputPressed(event);"
-		   onclick="clickPressed(event);" />
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan="5">
-	    <input id="resultdisplay" name="resultdisplay" value="" readonly/>
-	  </td>
-	</tr>
-	<tr>
-	  <td><input type="button" class="btnTop" value="C" onclick="Cpress()"></td>
-	  <td><input type="button" class="btnTop" value="<--" onclick="deleteChar()"></td>
-	  <td><input type="button" class="btnMath" value="cos" onclick="addChar('cos(')"></td>
-	  <td><input type="button" class="btnMath" value="sin" onclick="addChar('sin(')"></td>
-	  <td><input type="button" class="btnMath" value="tan" onclick="addChar('tan(')"></td>
-	</tr>
-	<tr>
-	  <td><input type="button" class="btnMath" value="(" onclick="addChar('(')"></td>
-	  <td><input type="button" class="btnMath" value=")" onclick="addChar(')')"></td>
-	  <td><input type="button" class="btnMath" value="i" onclick="addChar('i')">
-    <!-- 	    <div class="unitdropdown"> -->
-    <!-- 	      <button onclick="unitdropdownFunc()" class="dropbtn">Unit</button> -->
-    <!-- 	      <div id="unitDropdown" class="unitdropdown-content"> -->
-    <!-- 		 <a href="#">Link 1</a> -->
-    <!-- <a href="#">Link 2</a> -->
-    <!-- <a href="#">Link 3</a> -->
-    <!-- 	      </div> -->
-    <!-- 	    </div> -->
-	  </td>
-	  <td><input type="button" class="btnOpps" value="exp" onclick="addChar('exp(')"></td>
-	  <td><input type="button" class="btnMath" value="/" onclick="addChar('/')"></td>
-	<tr>
-	  <td><input type="button" class="btnNum" value="7" onclick="addChar('7')"></td>
-	  <td><input type="button" class="btnNum" value="8" onclick="addChar('8')"></td>
-	  <td><input type="button" class="btnNum" value="9" onclick="addChar('9')"></td>
-	  <td><input type="button" class="btnOpps" value="log" onclick="addChar('log(')"></td>
-	  <td><input type="button" class="btnMath" value="*" onclick="addChar('*')"></td>
-	</tr>
-	<tr>
-	  <td><input type="button" class="btnNum" value="4" onclick="addChar('4')"></td>
-	  <td><input type="button" class="btnNum" value="5" onclick="addChar('5')"></td>
-	  <td><input type="button" class="btnNum" value="6" onclick="addChar('6')"></td>
-	  <td><input type="button" class="btnOpps" value="&radic;" onclick="addChar('sqrt(')"></td>
-	  <td><input type="button" class="btnMath" value="-" onclick="addChar('-')"></td>
-	</tr>
-	<tr>
-	  <td><input type="button" class="btnNum" value="1" onclick="addChar('1')"></td>
-	  <td><input type="button" class="btnNum" value="2" onclick="addChar('2')"></td>
-	  <td><input type="button" class="btnNum" value="3" onclick="addChar('3')"></td>
-	  <td><input type="button" class="btnOpps" value="^2" onclick="addChar('^2') }"></td>
-	  <td><input type="button" class="btnMath" value="+" onclick="addChar('+')"></td>
-	</tr>
-	<tr>
-	  <td><input type="button" class="btnMath" value="E" onclick="addChar('e')"></td>
-	  <td><input type="button" class="btnNum" value="0" onclick="addChar('0')"></td>
-	  <td><input type="button" class="btnMath" value="." onclick="addChar('.')"></td>
-	  <td><input type="button" class="btnOpps" value="&#960;" onclick="addChar('pi')"></td>
-	  <td><input type="button" class="btnTop" value="=" onclick="compute()"></td>
-	</tr>
-      </table>
-    </form>
+    <div class="calculator">
+
+      <input id="display" class="calculator-screen" value=""
+	     onkeydown="keyPressed(event)"
+	     onblur="blurHandler(event)"
+	     oninput="inputPressed(event)"
+	     onclick="clickPressed(event)" />
+      <div class="unitrow">
+	Convert to:
+	<input id="unitdisplay" value="GeV"
+	       onkeypress="keyPressed(event)"
+	       oninput="inputPressed(event)"
+	       onclick="clickPressed(event)" />
+      </div>
+      <input id="resultdisplay" class="calculator-screen" value="" readonly />
+
+      <div class="calculator-keys">
+	
+      	<button class="btnTop" onclick="Cpress()">C</button>
+      	<button class="btnTop" onclick="deleteChar()">&lt;--</button>
+      	<button class="btnMath" onclick="addChar('cos(')">cos</button>
+      	<button class="btnMath" onclick="addChar('sin(')">sin</button>
+      	<button class="btnMath" onclick="addChar('tan(')">tan</button>
+
+      	<button class="btnMath" onclick="addChar('(')">(</button>
+      	<button class="btnMath" onclick="addChar(')')">)</button>
+      	<button class="btnMath" onclick="addChar('i')">i</button>
+      	<button class="btnOpps" onclick="addChar('exp(')">exp</button>
+      	<button class="btnMath" onclick="addChar('/')">/</button>
+
+      	<button class="btnNum" onclick="addChar('7')">7</button>
+      	<button class="btnNum" onclick="addChar('8')">8</button>
+      	<button class="btnNum" onclick="addChar('9')">9</button>
+      	<button class="btnOpps" onclick="addChar('log(')">log</button>
+      	<button class="btnMath" onclick="addChar('*')">*</button>
+
+      	<button class="btnNum" onclick="addChar('4')">4</button>
+      	<button class="btnNum" onclick="addChar('5')">5</button>
+      	<button class="btnNum" onclick="addChar('6')">6</button>
+      	<button class="btnOpps" onclick="addChar('sqrt(')">&radic;</button>
+      	<button class="btnMath" onclick="addChar('-')">-</button>
+
+      	<button class="btnNum" onclick="addChar('1')">1</button>
+      	<button class="btnNum" onclick="addChar('2')">2</button>
+      	<button class="btnNum" onclick="addChar('3')">3</button>
+      	<button class="btnOpps" onclick="addChar('^2')">^2</button>
+      	<button class="btnMath" onclick="addChar('+')">+</button>
+
+      	<button class="btnMath" onclick="addChar('e')">E</button>
+      	<button class="btnNum" onclick="addChar('0')">0</button>
+      	<button class="btnMath" onclick="addChar('.')">.</button>
+      	<button class="btnOpps" onclick="addChar('pi')">&#960;</button>
+      	<button class="btnTop" onclick="compute()">=</button>
+
+      </div>
+
+    </div>
     <!-- Loading at the end for startup speed -->
     <script type="text/javascript" src="js/math.min.js"></script>
     <script type="text/javascript" src="js/calc.js"></script>

@@ -1,90 +1,88 @@
-* {
+/* Thanks https://freshman.tech/css-grid-calculator/ for grid setup idea */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  margin: 0;
   padding: 0;
-  /* margin: 5px; */
-  text-align: center;
+  box-sizing: inherit;
 }
-body {
-  background-color:blue;
-}
+
 .calculator {
-    width: 342px;
-    height: 480px;
-    background-color: #c0c0c0;
-    box-shadow: 0px 0px 0px 10px #666;
-    border: 5px solid black;
-    border-radius: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  height: 100%;
+  background-color: #c0c0c0;
+
+  display: grid;
+  grid-template-rows: 50px 40px 50px 1fr;
+  padding: 10px;
 }
 @media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-    .calculator { height: 96vh; }
+and (min-device-width : 481px) { 
+    .calculator { width: 360px;
+		  height: 640px;}
 }
-#display, #resultdisplay {
-  width: 320px;
-  height: 40px;
-  text-align: right;
-  background-color: black;
-  border: 3px solid white;
-  font-size: 18px;
-  left: 2px;
-  top: 2px;
-  color: #7fff00;
-}
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-/* Dropdown Content (Hidden by Default) */
-.unitdropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-/* Links inside the dropdown */
-.unitdropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-/* Change color of dropdown links on hover */
-.unitdropdown-content a:hover {background-color: #ddd}
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
-.btnTop{
+
+.calculator-screen {
+  width: 100%;
+  font-size: 3rem;
+  height: 40px;
+  border: none;
+  background-color: #252525;
+  color: #7fff00;
+  text-align: right;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+button {
+/*  height: 30px;*/
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  background-color: transparent;
+  font-size: 2rem;
+  color: #333;
+  background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+  text-shadow: 0 1px rgba(255,255,255,.4);
+}
+
+/* button:hover { */
+/*  background-color: #eaeaea; */
+/* } */
+
+.btnTop {
   color: white;
   background-color: #6f6f6f;
-  font-size: 14px;
-  margin: auto;
-  width: 50px;
-  height: 25px;
 }
+
 .btnNum {
   color: white;
   background-color: black;
-  font-size: 14px;
-  margin: auto;
-  width: 50px;
-  height: 25px;
 }
 .btnMath {
   color: white;
   background-color: #ff4561;
-  font-size: 14px;
-  margin: auto;
-  width: 50px;
-  height: 25px;
 }
 .btnOpps {
   color: white;
   background-color: #ff9933;
-  font-size: 14px;
-  margin: auto;
-  width: 50px;
-  height: 25px;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+/*  padding: 10px; */
+/*  height: 70%; */
 }
