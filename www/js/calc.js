@@ -56,7 +56,8 @@ let hc = 1.973269602e-14
 let e2 = 7.2973525e-3
 
 let units = {
-    pi:  dimval(math.pi, 0),
+    i:   dimval(math.complex(0,1)),
+    pi:  dimval(math.pi),
     GeV: dimval(1, 1),
     MeV: dimval(1e-3, 1),
     keV: dimval(1e-6, 1),
@@ -99,28 +100,28 @@ let units = {
 
 function unit_plus(a, b) {
     if (math.equal(a.u,b.u))
-	return { v: a.v+b.v, u: a.u }
+	return { v: math.add(a.v,b.v), u: a.u }
     else
 	throw "Addition unit mismatch"
 }
 
 function unit_minus(a, b) {
     if (math.equal(a.u,b.u))
-	return { v: a.v-b.v, u: a.u }
+	return { v: math.subtract(a.v,b.v), u: a.u }
     else
 	throw "Subtraction unit mismatch"
 }
 
 function unit_negate(a) {
-    return { v: -a.v, u: a.u }
+    return { v: math.unaryMinus(a.v), u: a.u }
 }
 
 function unit_mul(a, b) {
-    return { v: a.v*b.v, u: math.add(a.u,b.u) }
+    return { v: math.multiply(a.v,b.v), u: math.add(a.u,b.u) }
 }
 
 function unit_div(a, b) {
-    return { v: a.v/b.v, u: math.subtract(a.u,b.u) }
+    return { v: math.divide(a.v,b.v), u: math.subtract(a.u,b.u) }
 }
 
 function unit_pow(a, b) {
@@ -163,7 +164,7 @@ function eval_tree(node) {
 
 function gev_to_units(v, t) {
     dim = math.divide(v.u, t.u)
-    val = v.v/math.pow(t.v, Number(dim))
+    val = math.divide(v.v,math.pow(t.v, Number(dim)))
     return dimval(val, dim.s*dim.n, dim.d)
 }
 
