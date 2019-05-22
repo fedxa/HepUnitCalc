@@ -9,8 +9,6 @@
   <body>
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <!-- <script type="text/javascript" src="js/jquery-3.4.1.slim.min.js"></script> -->
-    <script type="text/javascript" src="js/math.min.js"></script>
-    <script type="text/javascript" src="js/calc.js"></script>
     <form id="unitcalc">
       <table class="calculator" cellspacing="0" cellpadding="1">
 	<tr>
@@ -87,7 +85,10 @@
 	  <td><input type="button" class="btnOpps" value="&#960;" onclick="addChar('pi')"></td>
 	  <td><input type="button" class="btnTop" value="=" onclick="compute()"></td>
 	</tr>
-     </table>
-  </form>   
-</body>
+      </table>
+    </form>
+    <!-- Loading at the end for startup speed -->
+    <script type="text/javascript" src="js/math.min.js"></script>
+    <script type="text/javascript" src="js/calc.js"></script>
+  </body>
 </html>
