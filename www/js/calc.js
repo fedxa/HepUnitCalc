@@ -101,14 +101,14 @@ function unit_plus(a, b) {
     if (math.equal(a.u,b.u))
 	return { v: a.v+b.v, u: a.u }
     else
-	return dimval(NaN)
+	throw "Addition unit mismatch"
 }
 
 function unit_minus(a, b) {
     if (math.equal(a.u,b.u))
 	return { v: a.v-b.v, u: a.u }
     else
-	return dimval(NaN)
+	throw "Subtraction unit mismatch"
 }
 
 function unit_negate(a) {
@@ -127,7 +127,7 @@ function unit_pow(a, b) {
     if (math.equal(b.u,0))
 	return { v: math.pow(a.v,b.v), u: math.multiply(a.u,b.v) }
     else
-	return dimval(NaN)
+	throw "Dimensionful exponent"
 }
 
 function eval_tree(node) {
@@ -150,9 +150,11 @@ function eval_tree(node) {
 	}
     case 'FunctionNode':
 	arg = eval_tree(node.args[0])
-	if (math.unequal(arg.u,0)) {
-	    return dimval(NaN)
-	} else {
+	if (node.name=="sqrt")
+	    return { v: math.sqrt(arg.v), u: math.divide(arg.u, 2) }
+	else if (math.unequal(arg.u,0))
+	    throw "Dimensional function arg"
+	else {
 	    node.args[0] = new math.expression.node.ConstantNode(arg.v)
 	    return dimval(node.eval(), 0)
 	}
@@ -178,11 +180,16 @@ function print_units(uv, uname="GeV") {
 	return String(uv.v)+"*"+uname+"^("+uv.u.toFraction()+")"
 }
 
-function compute(form) {
-    val = eval_tree(math.parse(form.display.value))
-    uname = form.unitdisplay.value
-    u = eval_tree(math.parse(uname))
-    form.resultdisplay.value = print_units(gev_to_units(val,u),uname)
+function compute() {
+    form = document.getElementById("unitcalc")
+    try {
+	val = eval_tree(math.parse(form.display.value))
+	uname = form.unitdisplay.value
+	u = eval_tree(math.parse(uname))
+	form.resultdisplay.value = print_units(gev_to_units(val,u),uname)
+    } catch(err) {
+	form.resultdisplay.value = "Error: "+err
+    }
 }
 
 function inputPressed(event) {
@@ -209,5 +216,9 @@ function keyPressed(event) {
     // document.getElementById('resultdisplay').value = cur_cursor
     var x = event.charCode || event.keyCode;  // Get the Unicode value
     if (x == 13)
-	compute(document.getElementById("unitcalc"))
+	compute()
+}
+
+function unitdropdownFunc() {
+    document.getElementById("unitDropdown").classList.toggle("show");
 }

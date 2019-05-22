@@ -1,5 +1,9 @@
 # HEP Unit Calcultor
 
+## Introduction
+
+This is the calculator that allows unit transformation in the style conventional in the High Energy Physics.
+
 See it in action at https://fedxa.github.io/HepUnitCalc/www/
 
 Get the current (more or less) Android package from:
@@ -44,3 +48,7 @@ The resulting apk file is in
 In your browser, open the file:
 
     /www/index.html
+
+## Acknowledgements
+
+The expression parser is based on the excellent [Math.js](https://mathjs.org/) library.

@@ -40,45 +40,54 @@
 	<tr>
 	  <td><input type="button" class="btnTop" value="C" onclick="Cpress()"></td>
 	  <td><input type="button" class="btnTop" value="<--" onclick="deleteChar()"></td>
-	  <td><input type="button" class="btnTop" value="=" onclick="compute()"></td>
-	  <td><input type="button" class="btnOpps" value="&#960;" onclick="addChar('pi')"></td>
-	  <td><!-- <input type="button" class="btnMath" value="%" onclick=" percent()"> --></td>
+	  <td><input type="button" class="btnMath" value="cos" onclick="addChar('cos(')"></td>
+	  <td><input type="button" class="btnMath" value="sin" onclick="addChar('sin(')"></td>
+	  <td><input type="button" class="btnMath" value="tan" onclick="addChar('tan(')"></td>
 	</tr>
+	<tr>
+	  <td><input type="button" class="btnMath" value="(" onclick="addChar('(')"></td>
+	  <td><input type="button" class="btnMath" value=")" onclick="addChar(')')"></td>
+	  <td>
+    <!-- 	    <div class="unitdropdown"> -->
+    <!-- 	      <button onclick="unitdropdownFunc()" class="dropbtn">Unit</button> -->
+    <!-- 	      <div id="unitDropdown" class="unitdropdown-content"> -->
+    <!-- 		 <a href="#">Link 1</a> -->
+    <!-- <a href="#">Link 2</a> -->
+    <!-- <a href="#">Link 3</a> -->
+    <!-- 	      </div> -->
+    <!-- 	    </div> -->
+	  </td>
+	  <td><input type="button" class="btnOpps" value="exp" onclick="addChar('exp(')"></td>
+	  <td><input type="button" class="btnMath" value="/" onclick="addChar('/')"></td>
 	<tr>
 	  <td><input type="button" class="btnNum" value="7" onclick="addChar('7')"></td>
 	  <td><input type="button" class="btnNum" value="8" onclick="addChar('8')"></td>
 	  <td><input type="button" class="btnNum" value="9" onclick="addChar('9')"></td>
-	  <td><input type="button" class="btnOpps" value="exp" onclick="addChar('exp(')"></td>
-	  <td><input type="button" class="btnMath" value="/" onclick="addChar('/')"></td>
+	  <td><input type="button" class="btnOpps" value="log" onclick="addChar(this.form.display,'log(')"></td>
+	  <td><input type="button" class="btnMath" value="*" onclick="addChar('*')"></td>
+	</tr>
 	<tr>
 	  <td><input type="button" class="btnNum" value="4" onclick="addChar('4')"></td>
 	  <td><input type="button" class="btnNum" value="5" onclick="addChar('5')"></td>
 	  <td><input type="button" class="btnNum" value="6" onclick="addChar('6')"></td>
-	  <td><input type="button" class="btnOpps" value="log" onclick="addChar(this.form.display,'log(')"></td>
-	  <td><input type="button" class="btnMath" value="*" onclick="addChar('*')"></td>
+	  <td><input type="button" class="btnOpps" value="&radic;" onclick="addChar('sqrt(')"></td>
+	  <td><input type="button" class="btnMath" value="-" onclick="addChar('-')"></td>
 	</tr>
 	<tr>
 	  <td><input type="button" class="btnNum" value="1" onclick="addChar('1')"></td>
 	  <td><input type="button" class="btnNum" value="2" onclick="addChar('2')"></td>
 	  <td><input type="button" class="btnNum" value="3" onclick="addChar('3')"></td>
-	  <td><input type="button" class="btnOpps" value="&radic;" onclick="addChar('sqrt(')"></td>
-	  <td><input type="button" class="btnMath" value="-" onclick="addChar('-')"></td>
+	  <td><input type="button" class="btnOpps" value="^2" onclick="addChar('^2') }"></td>
+	  <td><input type="button" class="btnMath" value="+" onclick="addChar('+')"></td>
 	</tr>
 	<tr>
 	  <td><input type="button" class="btnMath" value="E" onclick="addChar('e')"></td>
 	  <td><input type="button" class="btnNum" value="0" onclick="addChar('0')"></td>
 	  <td><input type="button" class="btnMath" value="." onclick="addChar('.')"></td>
-	  <td><input type="button" class="btnOpps" value="^2" onclick="addChar('^2') }"></td>
-	  <td><input type="button" class="btnMath" value="+" onclick="addChar('+')"></td>
+	  <td><input type="button" class="btnOpps" value="&#960;" onclick="addChar('pi')"></td>
+	  <td><input type="button" class="btnTop" value="=" onclick="compute()"></td>
 	</tr>
-	<tr>
-	  <td><input type="button" class="btnMath" value="(" onclick="addChar('(')"></td>
-	  <td><input type="button" class="btnMath" value=")" onclick="addChar(')')"></td>
-	  <td><input type="button" class="btnMath" value="cos" onclick="addChar('cos(')"></td>
-	  <td><input type="button" class="btnMath" value="sin" onclick="addChar('sin(')"></td>
-	  <td><input type="button" class="btnMath" value="tan" onclick="addChar('tan(')"></td>
-	</tr>
-     </tabel>
+     </table>
   </form>   
 </body>
 </html>
