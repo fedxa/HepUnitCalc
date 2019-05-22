@@ -19,6 +19,7 @@ First download the [Cordova](https://cordova.apache.org/)
     $ npm install cordova
 
 make sure that you have other reqirements installed
+([Instructions from Cordova](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#installing-the-requirements))
 
     $ cordova requirements android
 
