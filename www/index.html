@@ -10,11 +10,11 @@
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <!-- <script type="text/javascript" src="js/jquery-3.4.1.slim.min.js"></script> -->
     <form id="unitcalc">
-      <table class="calculator" cellspacing="0" cellpadding="1">
+      <table class="calculator">
 	<tr>
 	  <td colspan="5">
-	    <input id="display" name="display" value="" size="28"
-		   onkeypress="keyPressed(event);"
+	    <input id="display" name="display" value=""
+		   onkeydown="keyPressed(event);"
 		   oninput="inputPressed(event);"
 		   onclick="clickPressed(event);" />
 	  </td>
@@ -23,7 +23,6 @@
 	  <td colspan="5">
 	    Convert to:
 	    <input id="unitdisplay" name="unitdisplay" value="GeV"
-		   size="19"
 		   onkeypress="keyPressed(event);"
 		   oninput="inputPressed(event);"
 		   onclick="clickPressed(event);" />
@@ -31,8 +30,7 @@
 	</tr>
 	<tr>
 	  <td colspan="5">
-	    <input id="resultdisplay" name="resultdisplay" value=""
-		   size="28" readonly/>
+	    <input id="resultdisplay" name="resultdisplay" value="" readonly/>
 	  </td>
 	</tr>
 	<tr>
@@ -61,7 +59,7 @@
 	  <td><input type="button" class="btnNum" value="7" onclick="addChar('7')"></td>
 	  <td><input type="button" class="btnNum" value="8" onclick="addChar('8')"></td>
 	  <td><input type="button" class="btnNum" value="9" onclick="addChar('9')"></td>
-	  <td><input type="button" class="btnOpps" value="log" onclick="addChar(this.form.display,'log(')"></td>
+	  <td><input type="button" class="btnOpps" value="log" onclick="addChar('log(')"></td>
 	  <td><input type="button" class="btnMath" value="*" onclick="addChar('*')"></td>
 	</tr>
 	<tr>

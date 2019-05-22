@@ -216,8 +216,12 @@ function keyPressed(event) {
     cur_cursor = event.target.selectionStart+1
     // document.getElementById('resultdisplay').value = cur_cursor
     var x = event.charCode || event.keyCode;  // Get the Unicode value
-    if (x == 13)
-	compute()
+    // document.getElementById('resultdisplay').value = x
+    switch (x) {
+    case 13: // Enter
+    case 9: // Tab
+    	compute()
+    }
 }
 
 function unitdropdownFunc() {
