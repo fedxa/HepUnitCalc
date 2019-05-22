@@ -163,7 +163,12 @@ function eval_tree(node) {
 }
 
 function gev_to_units(v, t) {
-    dim = math.divide(v.u, t.u)
+    if (t.u!=0)
+	dim = math.divide(v.u, t.u)
+    else if (v.u==0) // Both are dimensionless -- still convert!
+	dim = math.fraction(1)
+    else
+	throw "Can not convert to dimensionless"
     val = math.divide(v.v,math.pow(t.v, Number(dim)))
     return dimval(val, dim.s*dim.n, dim.d)
 }
