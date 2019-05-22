@@ -1,0 +1,11 @@
+{
+  "name": "org.fedxa.hepunitcalc",
+  "version": "0.0.1",
+  "displayName": "HepUnitCalc",
+  "cordova": {
+    "platforms": [
+      "android",
+      "browser"
+    ]
+  }
+}

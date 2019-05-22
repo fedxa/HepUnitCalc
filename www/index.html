@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/calc.css">
+    <title>HEP Unit Calculator</title>
+  </head>
+  <body>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.slim.min.js"></script> -->
+    <script type="text/javascript" src="js/math.min.js"></script>
+    <script type="text/javascript" src="js/calc.js"></script>
+    <form id="unitcalc">
+      <table class="calculator" cellspacing="0" cellpadding="1">
+	<tr>
+	  <td colspan="5">
+	    <input id="display" name="display" value="" size="28"
+		   onkeypress="keyPressed(event);"
+		   oninput="inputPressed(event);"
+		   onclick="clickPressed(event);" />
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="5">
+	    Convert to:
+	    <input id="unitdisplay" name="unitdisplay" value="GeV"
+		   size="19"
+		   onkeypress="keyPressed(event);"
+		   oninput="inputPressed(event);"
+		   onclick="clickPressed(event);" />
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan="5">
+	    <input id="resultdisplay" name="resultdisplay" value=""
+		   size="28" readonly/>
+	  </td>
+	</tr>
+	<tr>
+	  <td><input type="button" class="btnTop" value="C" onclick="Cpress()"></td>
+	  <td><input type="button" class="btnTop" value="<--" onclick="deleteChar()"></td>
+	  <td><input type="button" class="btnTop" value="=" onclick="compute()"></td>
+	  <td><input type="button" class="btnOpps" value="&#960;" onclick="addChar('pi')"></td>
+	  <td><!-- <input type="button" class="btnMath" value="%" onclick=" percent()"> --></td>
+	</tr>
+	<tr>
+	  <td><input type="button" class="btnNum" value="7" onclick="addChar('7')"></td>
+	  <td><input type="button" class="btnNum" value="8" onclick="addChar('8')"></td>
+	  <td><input type="button" class="btnNum" value="9" onclick="addChar('9')"></td>
+	  <td><input type="button" class="btnOpps" value="exp" onclick="addChar('exp(')"></td>
+	  <td><input type="button" class="btnMath" value="/" onclick="addChar('/')"></td>
+	<tr>
+	  <td><input type="button" class="btnNum" value="4" onclick="addChar('4')"></td>
+	  <td><input type="button" class="btnNum" value="5" onclick="addChar('5')"></td>
+	  <td><input type="button" class="btnNum" value="6" onclick="addChar('6')"></td>
+	  <td><input type="button" class="btnOpps" value="log" onclick="addChar(this.form.display,'log(')"></td>
+	  <td><input type="button" class="btnMath" value="*" onclick="addChar('*')"></td>
+	</tr>
+	<tr>
+	  <td><input type="button" class="btnNum" value="1" onclick="addChar('1')"></td>
+	  <td><input type="button" class="btnNum" value="2" onclick="addChar('2')"></td>
+	  <td><input type="button" class="btnNum" value="3" onclick="addChar('3')"></td>
+	  <td><input type="button" class="btnOpps" value="&radic;" onclick="addChar('sqrt(')"></td>
+	  <td><input type="button" class="btnMath" value="-" onclick="addChar('-')"></td>
+	</tr>
+	<tr>
+	  <td><input type="button" class="btnMath" value="E" onclick="addChar('e')"></td>
+	  <td><input type="button" class="btnNum" value="0" onclick="addChar('0')"></td>
+	  <td><input type="button" class="btnMath" value="." onclick="addChar('.')"></td>
+	  <td><input type="button" class="btnOpps" value="^2" onclick="addChar('^2') }"></td>
+	  <td><input type="button" class="btnMath" value="+" onclick="addChar('+')"></td>
+	</tr>
+	<tr>
+	  <td><input type="button" class="btnMath" value="(" onclick="addChar('(')"></td>
+	  <td><input type="button" class="btnMath" value=")" onclick="addChar(')')"></td>
+	  <td><input type="button" class="btnMath" value="cos" onclick="addChar('cos(')"></td>
+	  <td><input type="button" class="btnMath" value="sin" onclick="addChar('sin(')"></td>
+	  <td><input type="button" class="btnMath" value="tan" onclick="addChar('tan(')"></td>
+	</tr>
+     </tabel>
+  </form>   
+</body>
+</html>

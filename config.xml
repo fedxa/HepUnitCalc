@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.fedxa.hepunitcalc" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>HepUnitCalc</name>
+  <description>
+    Calculator with support of the natural high energy physics units.
+  </description>
+  <author email="Fedor.Bezrukov@gmail.com" href="http://www.hep.manchester.ac.uk/u/bezrukov">
+    Fedor Bezrukov
+  </author>
+  <content src="index.html" />
+  <!-- <access origin="*" /> -->
+  <preference name="orientation" value="portrait" />
+  <!-- <preference name="android-windowSoftInputMode" value="stateHidden" /> -->
+</widget>
