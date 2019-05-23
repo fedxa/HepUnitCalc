@@ -241,3 +241,37 @@ function keyPressed(event) {
 function unitdropdownFunc() {
     document.getElementById("unitDropdown").classList.toggle("show");
 }
+
+
+function toggleSelDropdown() {
+    v = document.getElementById('unitSelDropdown').style.display
+    document.getElementById('unitSelDropdown').style.display =
+	(v=='block') ? 'none' : 'block';
+}
+function hideSelDropdown() {
+    document.getElementById('unitSelDropdown').style.display = 'none';
+}
+
+function addUnit() {
+    hideSelDropdown()
+    addChar(document.getElementById('curUnit').innerText)
+}
+
+function selUnit(el) {
+    document.getElementById('curUnit').innerText = el.innerText
+    addUnit()
+}
+
+
+// Fill the unit menu
+{
+    var el = document.getElementById("unitSelDropdown")
+    function genevent(el) { return function() { selUnit(el) } }
+    for ( x in units ) {
+	if (x=="i" || x=="pi") continue
+	var div = document.createElement('div')
+	div.innerText = x
+	div.addEventListener("click", genevent(div))
+	el.appendChild(div)
+    }
+}

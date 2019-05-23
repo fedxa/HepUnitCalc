@@ -26,9 +26,21 @@
       <input id="resultdisplay" class="calculator-screen" value="" readonly />
 
       <div class="calculator-keys">
-	
+
       	<button class="btnTop" onclick="Cpress()">C</button>
       	<button class="btnTop" onclick="deleteChar()">&lt;--</button>
+	<div> </div>
+	<div class="unitSelControl">
+	  <button class="btnUnitSel">
+	    <span id="curUnit" onclick="addUnit()">GeV</span>
+	    <b onclick="toggleSelDropdown()">&#x25bc;</b>
+	  </button>
+	  <div id="unitSelDropdown" class="unitSelDropdown">
+	  </div>
+	</div>
+	
+	<div> </div>
+	<div> </div>
       	<button class="btnMath" onclick="addChar('cos(')">cos</button>
       	<button class="btnMath" onclick="addChar('sin(')">sin</button>
       	<button class="btnMath" onclick="addChar('tan(')">tan</button>

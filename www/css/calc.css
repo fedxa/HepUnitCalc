@@ -25,12 +25,14 @@ html {
   grid-template-rows: 50px 40px 50px 1fr;
   padding: 10px;
 }
-@media only screen 
-and (min-device-width : 481px) { 
+@media screen 
+and (min-width : 481px) { 
     .calculator { width: 360px;
 		  height: 640px;}
+    button:hover {
+	background-color: #eaeaea;
+    }
 }
-
 
 .calculator-screen {
   width: 100%;
@@ -57,9 +59,30 @@ button {
   text-shadow: 0 1px rgba(255,255,255,.4);
 }
 
-/* button:hover { */
-/*  background-color: #eaeaea; */
-/* } */
+.unitSelControl {
+  grid-column-start: 4;
+  grid-column-end: 6;
+}
+
+.btnUnitSel {
+    width:100%;
+    height:100%;
+}
+
+.unitSelDropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.unitSelDropdown div {
+    font-size: 2rem;
+}
 
 .btnTop {
   color: white;
