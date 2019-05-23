@@ -4,7 +4,7 @@
 
 This is the calculator that allows unit transformation in the style conventional in the High Energy Physics.
 
-See it in action at https://fedxa.github.io/HepUnitCalc/www/
+See it in action at https://fedxa.github.io/HepUnitCalc/www/ (Or current experimental version http://www.hep.manchester.ac.uk/u/bezrukov/misc/www/ )
 
 Get the current (more or less) Android package from:
 http://www.hep.manchester.ac.uk/u/bezrukov/misc/app-debug.apk
