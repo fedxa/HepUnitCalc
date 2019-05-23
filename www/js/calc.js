@@ -5,9 +5,9 @@ function insertAtCaret(txtarea, text) {
     if (!txtarea) {
 	return;
     }
-    var strPos = cur_cursor
-    var front = (txtarea.value).substring(0, strPos);
-    var back = (txtarea.value).substring(strPos, txtarea.value.length);
+    let strPos = cur_cursor
+    let front = (txtarea.value).substring(0, strPos);
+    let back = (txtarea.value).substring(strPos, txtarea.value.length);
     txtarea.value = front + text + back;
     strPos = strPos + text.length;
     txtarea.selectionStart = strPos;
@@ -18,7 +18,7 @@ function insertAtCaret(txtarea, text) {
 function addChar(character) {
     if (!cur_input)
 	cur_input = document.getElementById('display');
-    var input = cur_input
+    let input = cur_input
     if(input.value == null || input.value == "0") {
 	input.value = character
 	cur_cursor = character.length
@@ -27,7 +27,7 @@ function addChar(character) {
 }
 
 function deleteChar() {
-    var input=cur_input
+    let input = cur_input
     strPos = cur_cursor
     str = input.value
     input.value = str.substring(0, strPos-1)+str.substring(strPos,str.length)
@@ -50,12 +50,12 @@ function dimval(v, un=0, ud=1) {
     return { v: v, u: math.fraction(un,ud) }
 }
 
-let c =  2.99792458e10
-let h =  1.054571596e-34
-let hc = 1.973269602e-14
-let e2 = 7.2973525e-3
+const c =  2.99792458e10
+const h =  1.054571596e-34
+const hc = 1.973269602e-14
+const e2 = 7.2973525e-3
 
-let units = {
+var units = {
     i:   dimval(math.complex(0,1)),
     pi:  dimval(math.pi),
     GeV: dimval(1, 1),
@@ -150,7 +150,7 @@ function eval_tree(node) {
 	case 'unaryMinus': return unit_negate(eval_tree(node.args[0]))
 	}
     case 'FunctionNode':
-	arg = eval_tree(node.args[0])
+	let arg = eval_tree(node.args[0])
 	if (node.name=="sqrt")
 	    return { v: math.sqrt(arg.v), u: math.divide(arg.u, 2) }
 	else if (math.unequal(arg.u,0))
@@ -163,13 +163,14 @@ function eval_tree(node) {
 }
 
 function gev_to_units(v, t) {
+    let dim
     if (t.u!=0)
 	dim = math.divide(v.u, t.u)
     else if (v.u==0) // Both are dimensionless -- still convert!
 	dim = math.fraction(1)
     else
 	throw "Can not convert to dimensionless"
-    val = math.divide(v.v,math.pow(t.v, Number(dim)))
+    let val = math.divide(v.v,math.pow(t.v, Number(dim)))
     return dimval(val, dim.s*dim.n, dim.d)
 }
 
@@ -187,13 +188,13 @@ function print_units(uv, uname="GeV") {
 }
 
 function compute() {
-    valuedisplay = document.getElementById("display")
-    unitdisplay = document.getElementById("unitdisplay")
-    resultdisplay = document.getElementById("resultdisplay")
+    let valuedisplay = document.getElementById("display")
+    let unitdisplay = document.getElementById("unitdisplay")
+    let resultdisplay = document.getElementById("resultdisplay")
     try {
-	val = eval_tree(math.parse(valuedisplay.value))
-	uname = unitdisplay.value
-	u = eval_tree(math.parse(uname))
+	let val = eval_tree(math.parse(valuedisplay.value))
+	let uname = unitdisplay.value
+	let u = eval_tree(math.parse(uname))
 	resultdisplay.value = print_units(gev_to_units(val,u),uname)
     } catch(err) {
 	resultdisplay.value = "Error: "+err
@@ -229,7 +230,7 @@ function keyPressed(event) {
     cur_input = event.target
     cur_cursor = event.target.selectionStart+1
     // document.getElementById('resultdisplay').value = cur_cursor
-    var x = event.charCode || event.keyCode;  // Get the Unicode value
+    let x = event.charCode || event.keyCode;  // Get the Unicode value
     // document.getElementById('resultdisplay').value = x
     switch (x) {
     case 13: // Enter
@@ -244,7 +245,7 @@ function unitdropdownFunc() {
 
 
 function toggleSelDropdown() {
-    v = document.getElementById('unitSelDropdown').style.display
+    let v = document.getElementById('unitSelDropdown').style.display
     document.getElementById('unitSelDropdown').style.display =
 	(v=='block') ? 'none' : 'block';
 }
@@ -265,11 +266,11 @@ function selUnit(el) {
 
 // Fill the unit menu
 {
-    var el = document.getElementById("unitSelDropdown")
+    let el = document.getElementById("unitSelDropdown")
     function genevent(el) { return function() { selUnit(el) } }
     for ( x in units ) {
 	if (x=="i" || x=="pi") continue
-	var div = document.createElement('div')
+	let div = document.createElement('div')
 	div.innerText = x
 	div.addEventListener("click", genevent(div))
 	el.appendChild(div)
