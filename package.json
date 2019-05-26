@@ -9,6 +9,7 @@
     ]
   },
   "dependencies": {
+    "browserify": "^16.2.3",
     "cordova-android": "^8.0.0"
   }
 }

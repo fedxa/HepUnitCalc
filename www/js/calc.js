@@ -100,62 +100,55 @@ function dim_eval(expr) {
 
 // Constant definition
 const c =  2.99792458e10;
-const h =  1.054571596e-34;
+// const h =  1.054571596e-34;
 const hc = 1.973269602e-14;
-const e2 = 7.2973525e-3;
+// const e2 = 7.2973525e-3;
 
-// "Bootstrap"
+// "Bootstrap" units
 var units = {
     i:   dimval(math.complex(0,1)),
     pi:  dimval(math.pi),
     e:   dimval(math.e),
     GeV: dimval(1, 1)
 }
+// "Derived" units
+units["MeV"] = dim_eval("1e-3 GeV");
+units["keV"] = dimval(1e-6, 1);
+units["eV"] =  dimval(1e-9, 1);
+units["cm"] =  dimval( 1./hc, -1);
+units["km"] =  dimval( 1.e5/hc, -1);
+units["pc"] =  dimval( 3.0856775807e18/hc, -1);
+units["Mpc"] = dimval( 3.0856775807e24/hc, -1);
+units["s"] =   dimval( c/hc, -1);
+units["yr"] =  dimval( 3600*24*365.*c/hc, -1);
+units["Mpl"] = dimval( 1.221e19, 1);
+units["g"] =   dimval( 1./1.782661731e-24, 1);
+units["kg"] =  dimval( 1./1.782661731e-27, 1);
+units["Msun"] = dimval( 1.9889e57/1.782661731, 1);
+units["K"] =   dimval( 1.e-9/(300*38.681686), 1);
+units["G"] =   dimval( math.sqrt(137.03599976)*2*0.510998902e-3*5.788381749e-18, 2);
+units["m"] =   dimval( 100./hc, -1);
+units["m_e"] = dimval( 0.510998902e-3, 1);
+units["m_p"] = dimval( 0.938271998, 1);
+units["Hz"] =  dimval( 2*math.pi*hc/c, 1);
+units["kHz"] = dimval( 2*math.pi*1.e3*hc/c, 1);
+units["MHz"] = dimval( 2*math.pi*1.e6*hc/c, 1);
+units["GHz"] = dimval( 2*math.pi*1.e9*hc/c, 1);
+units["barn"] = dimval( 1.e-24/(hc*hc), -2);
+units["sigmat"] = dimval( 0.665245854e-24/(hc*hc), -2);
+units["Jy"] = dimval( 2.4303146457e-48, 3);
+units["erg"] = dimval(  6.2415097419e+2, 1);
+units["J"] =   dimval( 6.2415097419e+9, 1);
+units["W"] =   dimval( 4.1082359198e-15, 2);
+units["T"] =   dimval( math.sqrt(137.03599976)*2*0.510998902e-3*5.788381749e-14, 2);
+units["kpc"] = dimval( 3.0856775807e21/hc, -1);
+units["m_w"] = dimval( 80.419, 1);
+units["m_z"] = dimval( 91.1882, 1);
+units["AU"] =  dimval( 1.4959787066e13/hc, -1);
+units["sigmaB"] = dimval( 0.164493406684823, 0);
+units["Rsun"] = dimval( 3.5245840699e+24, -1);
+units["Lsun"] = dimval( 1.5771517696e+12, 2);
 
-// Derived values
-units = {
-    i:   dimval(math.complex(0,1)),
-    pi:  dimval(math.pi),
-    e:   dimval(math.e),
-//    e:   dimval( 1./math.sqrt(137.03599976), 0),
-    GeV: dimval(1, 1),
-    MeV: dim_eval("1e-3 GeV"),
-    keV: dimval(1e-6, 1),
-    eV:  dimval(1e-9, 1),
-    cm:  dimval( 1./hc, -1),
-    km:  dimval( 1.e5/hc, -1),
-    pc:  dimval( 3.0856775807e18/hc, -1),
-    Mpc: dimval( 3.0856775807e24/hc, -1),
-    s:   dimval( c/hc, -1),
-    yr:  dimval( 3600*24*365.*c/hc, -1),
-    Mpl: dimval( 1.221e19, 1),
-    g:   dimval( 1./1.782661731e-24, 1),
-    kg:  dimval( 1./1.782661731e-27, 1),
-    Msun: dimval( 1.9889e57/1.782661731, 1),
-    K:   dimval( 1.e-9/(300*38.681686), 1),
-    G:   dimval( math.sqrt(137.03599976)*2*0.510998902e-3*5.788381749e-18, 2),
-    m:   dimval( 100./hc, -1),
-    m_e: dimval( 0.510998902e-3, 1),
-    m_p: dimval( 0.938271998, 1),
-    Hz:  dimval( 2*math.pi*hc/c, 1),
-    kHz: dimval( 2*math.pi*1.e3*hc/c, 1),
-    MHz: dimval( 2*math.pi*1.e6*hc/c, 1),
-    GHz: dimval( 2*math.pi*1.e9*hc/c, 1),
-    barn: dimval( 1.e-24/(hc*hc), -2),
-    sigmat: dimval( 0.665245854e-24/(hc*hc), -2),
-    Jy : dimval( 2.4303146457e-48, 3),
-    erg: dimval(  6.2415097419e+2, 1),
-    J:   dimval( 6.2415097419e+9, 1),
-    W:   dimval( 4.1082359198e-15, 2),
-    T:   dimval( math.sqrt(137.03599976)*2*0.510998902e-3*5.788381749e-14, 2),
-    kpc: dimval( 3.0856775807e21/hc, -1),
-    m_w: dimval( 80.419, 1),
-    m_z: dimval( 91.1882, 1),
-    AU:  dimval( 1.4959787066e13/hc, -1),
-    sigmaB: dimval( 0.164493406684823, 0),
-    Rsun: dimval( 3.5245840699e+24, -1),
-    Lsun: dimval( 1.5771517696e+12, 2)
-};
 
 
 // Unit conversion!  Returns a dimensionful quantity for V using
@@ -227,8 +220,8 @@ function addChar(character) {
 
 function deleteChar() {
     let input = cur_input;
-    strPos = cur_cursor;
-    str = input.value;
+    let strPos = cur_cursor;
+    let str = input.value;
     input.value = str.substring(0, strPos-1)+str.substring(strPos,str.length);
     cur_cursor = strPos-1;
 }
