@@ -1,5 +1,6 @@
 "use strict";
 
+//----------------------------------------------------------------------
 // Algebra engine
 
 // Create a "dimensional value" object DV
@@ -150,7 +151,6 @@ units["Rsun"] = dimval( 3.5245840699e+24, -1);
 units["Lsun"] = dimval( 1.5771517696e+12, 2);
 
 
-
 // Unit conversion!  Returns a dimensionful quantity for V using
 // dimensional quantity T as a new base unit
 function gev_to_units(v, t) {
@@ -186,10 +186,12 @@ function dim_format(uv, uname="GeV") {
 }
 
 
+//----------------------------------------------------------------------
 // Keyboard behavior
 
 var cur_input = document.getElementById('display');
 var cur_cursor = 0;
+var shift_state = false;
 
 function insertAtCaret(txtarea, text) {
     if (!txtarea) {
@@ -216,6 +218,7 @@ function addChar(character) {
     } else {
 	insertAtCaret(input, character);
     }
+    shiftOff()
 }
 
 function deleteChar() {
@@ -260,8 +263,10 @@ function focusPressed(event) {
 
 function clickPressed(event) {
     cur_input = event.target;
-    cur_cursor = event.target.selectionStart;
-    // document.getElementById('resultdisplay').value = "click"+String(cur_cursor);
+    cur_cursor = event.target.selectionStart;    
+    if (typeof(device)!="undefined" && device.platform=="Android")
+	cur_input.blur();
+    // document.getElementById('resultdisplay').value = "platform "+device.platform;
 }
 
 function blurHandler(event) {
@@ -308,6 +313,22 @@ function selUnit(el) {
     addUnit();
 }
 
+function shiftOn() {
+    for (let de of document.getElementsByClassName("shift0")) de.style.display="none";
+    for (let de of document.getElementsByClassName("shift1")) de.style.display="inherit";
+    shift_state = true;
+}
+function shiftOff() {
+    for (let de of document.getElementsByClassName("shift0")) de.style.display="inherit";
+    for (let de of document.getElementsByClassName("shift1")) de.style.display="none";
+    shift_state = false;
+}
+function toggleShift() {
+    if (shift_state)
+        shiftOff();
+    else
+        shiftOn();
+}
 
 // Fill the unit menu
 {

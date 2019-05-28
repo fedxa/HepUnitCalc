@@ -7,8 +7,7 @@
     <title>HEP Unit Calculator</title>
   </head>
   <body>
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
-    <!-- <script type="text/javascript" src="js/jquery-3.4.1.slim.min.js"></script> -->
+    <script type="text/javascript" src="cordova.js"></script>
     <div class="calculator">
 
       <input id="display" class="calculator-screen" value=""
@@ -38,12 +37,21 @@
 	  <div id="unitSelDropdown" class="unitSelDropdown">
 	  </div>
 	</div>
-	
+
+	<button class="btnShift" onclick="toggleShift()">shift</button>
 	<div> </div>
-	<div> </div>
-      	<button class="btnMath" onclick="addChar('cos(')">cos</button>
-      	<button class="btnMath" onclick="addChar('sin(')">sin</button>
-      	<button class="btnMath" onclick="addChar('tan(')">tan</button>
+      	<div>
+	  <button class="btnMath shift0" onclick="addChar('cos(')">cos</button>
+	  <button class="btnMath shift1" onclick="addChar('acos(')">acos</button>
+	</div>
+	<div>
+      	  <button class="btnMath shift0" onclick="addChar('sin(')">sin</button>
+      	  <button class="btnMath shift1" onclick="addChar('asin(')">asin</button>
+	</div>
+	<div>
+      	  <button class="btnMath shift0" onclick="addChar('tan(')">tan</button>
+      	  <button class="btnMath shift1" onclick="addChar('atan(')">atan</button>
+	</div>
 
       	<button class="btnMath" onclick="addChar('(')">(</button>
       	<button class="btnMath" onclick="addChar(')')">)</button>
