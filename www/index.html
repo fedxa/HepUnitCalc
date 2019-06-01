@@ -7,22 +7,18 @@
     <title>HEP Unit Calculator</title>
   </head>
   <body>
-    <script type="text/javascript" src="cordova.js"></script>
     <div class="calculator">
 
-      <input id="display" class="calculator-screen" value=""
-	     onkeydown="keyPressed(event)"
-	     onblur="blurHandler(event)"
-	     oninput="inputPressed(event)"
-	     onclick="clickPressed(event)" />
+      <div id="display" class="calculator-screen"
+	   onclick="moveCaretDiv(event)"><span id="caret" class="caret"></span></div>
+
       <div class="unitrow">
 	Convert to:
-	<input id="unitdisplay" value="GeV"
-	       onkeypress="keyPressed(event)"
-	       oninput="inputPressed(event)"
-	       onclick="clickPressed(event)" />
+	<div id="unitdisplay" class="unit-screen"
+	     onclick="moveCaretDiv"><span onclick="moveCaret(event)">G</span><span onclick="moveCaret(event)">e</span><span onclick="moveCaret(event)">V</span></div>
       </div>
-      <input id="resultdisplay" class="calculator-screen" value="" readonly />
+
+      <div id="resultdisplay" class="calculator-screen"></div>
 
       <div class="calculator-keys">
 
@@ -37,7 +33,7 @@
 	  <div id="unitSelDropdown" class="unitSelDropdown">
 	  </div>
 	</div>
-
+	
 	<button class="btnShift" onclick="toggleShift()">shift</button>
 	<div> </div>
       	<div>
@@ -87,6 +83,7 @@
 
     </div>
     <!-- Loading at the end for startup speed -->
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/math.min.js"></script>
     <script type="text/javascript" src="js/calc.js"></script>
   </body>

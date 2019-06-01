@@ -189,50 +189,69 @@ function dim_format(uv, uname="GeV") {
 //----------------------------------------------------------------------
 // Keyboard behavior
 
-var cur_input = document.getElementById('display');
-var cur_cursor = 0;
+// var cur_input = document.getElementById('display');
+var cur_caret = document.getElementById('caret');
+// var cur_cursor = 0;
 var shift_state = false;
+// var csevent;
 
-function insertAtCaret(txtarea, text) {
-    if (!txtarea) {
-	return;
-    }
-    let strPos = cur_cursor;
-    let front = (txtarea.value).substring(0, strPos);
-    let back = (txtarea.value).substring(strPos, txtarea.value.length);
-    txtarea.value = front + text + back;
-    strPos = strPos + text.length;
-    txtarea.selectionStart = strPos;
-    txtarea.selectionEnd = strPos;
-    cur_cursor = strPos;
+function moveCaret(event) {
+    let t = event.target;
+    let p = t.parentElement;
+    p.insertBefore(cur_caret, t);
+    event.stopPropagation();
 }
 
-function addChar(character) {
-    if (!cur_input) {
-	cur_input = document.getElementById('display');
-    }
-    let input = cur_input;
-    if(input.value == null || input.value == "0") {
-	input.value = character;
-	cur_cursor = character.length;
-    } else {
-	insertAtCaret(input, character);
-    }
-    shiftOff()
+function moveCaretDiv(event) {
+    let t = event.target;
+    if (event.clientX>t.clientWidth-10)
+	t.appendChild(cur_caret);
+    else
+	t.insertBefore(cur_caret, t.firstElementChild)
+//    csevent = event;
+}
+
+// Working with div text input
+function insertCharAtCaret(char) {
+    let n = document.createElement('span');
+    n.addEventListener('click', moveCaret);
+    n.innerText = char;
+    cur_caret.parentElement.insertBefore(n, cur_caret);
+}
+
+function insertTextAtCaret(text) {
+    for (let i=0; i<text.length; i++)
+	insertCharAtCaret(text[i]);
+}
+
+function deleteAtCaret() {
+    let prev = cur_caret.previousElementSibling;
+    if (prev)
+	prev.remove();
+}
+
+function getValue(div) {
+    return div.innerText;
+}
+
+// Dangerous - can kill caret
+function setValue(div, text) {
+    div.innerText = text;
+}
+
+function addChar(characters) {
+    insertTextAtCaret(characters);
+    shiftOff();
 }
 
 function deleteChar() {
-    let input = cur_input;
-    let strPos = cur_cursor;
-    let str = input.value;
-    input.value = str.substring(0, strPos-1)+str.substring(strPos,str.length);
-    cur_cursor = strPos-1;
+    deleteAtCaret();
 }
 
 function Cpress() {
-    cur_input = document.getElementById('display');
-    cur_input.value='';
-    cur_cursor=0;
+    let parent = cur_caret.parentElement;
+    parent.innerHTML = "";
+    parent.appendChild(cur_caret);
 }
 
 function compute() {
@@ -240,12 +259,12 @@ function compute() {
     let unitdisplay = document.getElementById("unitdisplay");
     let resultdisplay = document.getElementById("resultdisplay");
     try {
-	let val = dim_eval(valuedisplay.value);
-	let uname = unitdisplay.value;
+	let val = dim_eval(getValue(valuedisplay));
+	let uname = getValue(unitdisplay);
 	let u = dim_eval(uname);
-	resultdisplay.value = dim_format(gev_to_units(val,u),uname);
+	setValue(resultdisplay, dim_format(gev_to_units(val, u), uname) );
     } catch(err) {
-	resultdisplay.value = "Error: "+err;
+	setValue(resultdisplay, "Error: "+err);
     }
 }
 
@@ -277,8 +296,8 @@ function blurHandler(event) {
 }
 
 function keyPressed(event) {
-    cur_input = event.target;
-    cur_cursor = event.target.selectionStart+1;
+    // cur_input = event.target;
+    // cur_cursor = event.target.selectionStart+1;
     // document.getElementById('resultdisplay').value = cur_cursor;
     let x = event.charCode || event.keyCode;  // Get the Unicode value
     // document.getElementById('resultdisplay').value = x;
@@ -286,6 +305,8 @@ function keyPressed(event) {
     case 13: // Enter
     case 9: // Tab
     	compute();
+    default:
+	insertCharAtCaret(x);
     }
 }
 
