@@ -34,8 +34,14 @@ and (min-width : 481px) {
     }
 }
 
+textarea#setter {
+  left: -1000px;
+  position: absolute;
+}
+
 .calculator-screen {
-  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   font-size: 2.3rem;
   height: 40px;
   line-height: 40px;
@@ -45,12 +51,15 @@ and (min-width : 481px) {
   text-align: right;
   padding-right: 10px;
   padding-left: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 
 .unit-screen {
   display: inline-block;
-  width: 60%;
+  min-width: 60%;
+  max-width: 60%;
   font-size: 2rem;
   height: 30px;
   line-height: 30px;
@@ -60,6 +69,8 @@ and (min-width : 481px) {
   text-align: right;
   padding-right: 10px;
   padding-left: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .caret::after {

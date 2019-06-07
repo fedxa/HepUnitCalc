@@ -9,6 +9,8 @@
   <body>
     <div class="calculator">
 
+      <!-- <textarea type="text" id="setter" onkeydown="writeit(this, event);moveIt(this.value.length, event)" onkeyup="writeit(this, event)" onkeypress="writeit(this, event);"></textarea> -->
+      
       <div id="display" class="calculator-screen"
 	   onclick="moveCaretDiv(event)"><span id="caret" class="caret"></span></div>
 
@@ -37,45 +39,45 @@
 	<button class="btnShift" onclick="toggleShift()">shift</button>
 	<div> </div>
       	<div>
-	  <button class="btnMath shift0" onclick="addChar('cos(')">cos</button>
-	  <button class="btnMath shift1" onclick="addChar('acos(')">acos</button>
+	  <button class="btnMath shift0" onclick="addChar(this.innerText+'(')">cos</button>
+	  <button class="btnMath shift1" onclick="addChar(this.innerText+'(')">acos</button>
 	</div>
 	<div>
-      	  <button class="btnMath shift0" onclick="addChar('sin(')">sin</button>
-      	  <button class="btnMath shift1" onclick="addChar('asin(')">asin</button>
+      	  <button class="btnMath shift0" onclick="addChar(this.innerText+'(')">sin</button>
+      	  <button class="btnMath shift1" onclick="addChar(this.innerText+'(')">asin</button>
 	</div>
 	<div>
-      	  <button class="btnMath shift0" onclick="addChar('tan(')">tan</button>
-      	  <button class="btnMath shift1" onclick="addChar('atan(')">atan</button>
+      	  <button class="btnMath shift0" onclick="addChar(this.innerText+'(')">tan</button>
+      	  <button class="btnMath shift1" onclick="addChar(this.innerText+'(')">atan</button>
 	</div>
 
-      	<button class="btnMath" onclick="addChar('(')">(</button>
-      	<button class="btnMath" onclick="addChar(')')">)</button>
-      	<button class="btnMath" onclick="addChar('i')">i</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">(</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">)</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">i</button>
       	<button class="btnOpps" onclick="addChar('exp(')">exp</button>
-      	<button class="btnMath" onclick="addChar('/')">/</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">/</button>
 
-      	<button class="btnNum" onclick="addChar('7')">7</button>
-      	<button class="btnNum" onclick="addChar('8')">8</button>
-      	<button class="btnNum" onclick="addChar('9')">9</button>
-      	<button class="btnOpps" onclick="addChar('log(')">log</button>
-      	<button class="btnMath" onclick="addChar('*')">*</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">7</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">8</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">9</button>
+      	<button class="btnOpps" onclick="addChar(this.innerText+'(')">log</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">*</button>
 
-      	<button class="btnNum" onclick="addChar('4')">4</button>
-      	<button class="btnNum" onclick="addChar('5')">5</button>
-      	<button class="btnNum" onclick="addChar('6')">6</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">4</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">5</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">6</button>
       	<button class="btnOpps" onclick="addChar('sqrt(')">&radic;</button>
-      	<button class="btnMath" onclick="addChar('-')">-</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">-</button>
 
-      	<button class="btnNum" onclick="addChar('1')">1</button>
-      	<button class="btnNum" onclick="addChar('2')">2</button>
-      	<button class="btnNum" onclick="addChar('3')">3</button>
-      	<button class="btnOpps" onclick="addChar('^2')">^2</button>
-      	<button class="btnMath" onclick="addChar('+')">+</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">1</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">2</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">3</button>
+      	<button class="btnOpps" onclick="addChar(this.innerText)">^2</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">+</button>
 
       	<button class="btnMath" onclick="addChar('e')">E</button>
-      	<button class="btnNum" onclick="addChar('0')">0</button>
-      	<button class="btnMath" onclick="addChar('.')">.</button>
+      	<button class="btnNum" onclick="addChar(this.innerText)">0</button>
+      	<button class="btnMath" onclick="addChar(this.innerText)">.</button>
       	<button class="btnOpps" onclick="addChar('pi')">&#960;</button>
       	<button class="btnTop" onclick="compute()">=</button>
 

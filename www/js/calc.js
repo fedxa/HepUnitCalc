@@ -195,10 +195,45 @@ var cur_caret = document.getElementById('caret');
 var shift_state = false;
 // var csevent;
 
+
+
+function $(elid) {
+  return document.getElementById(elid);
+}
+
+function writeit(from, e) {
+  e = e || window.event;
+    let w = cur_caret.parentElement;
+    let tw = from.value;
+    Cpress();
+    insertTextAtCaret(tw);
+}
+
+function moveIt(count, e) {
+  e = e || window.event;
+  let keycode = e.keyCode || e.which;
+    //				alert(count);
+    let p = cur_caret.parentElement;
+    if (keycode == 37) {
+	p.insertBefore(cur_caret, cur_caret.previousElementSibling);
+  } else if (keycode == 39) {
+	p.insertBefore(cur_caret, cur_caret.nextElementSibling);
+  }
+
+}
+
+function alert(txt) {
+  console.log(txt);
+}
+
+
+
+
 function moveCaret(event) {
     let t = event.target;
     let p = t.parentElement;
     p.insertBefore(cur_caret, t);
+    // $('setter').focus();
     event.stopPropagation();
 }
 
@@ -208,7 +243,8 @@ function moveCaretDiv(event) {
 	t.appendChild(cur_caret);
     else
 	t.insertBefore(cur_caret, t.firstElementChild)
-//    csevent = event;
+    //    csevent = event;
+    // $('setter').focus();
 }
 
 // Working with div text input
