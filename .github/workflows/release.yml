@@ -17,16 +17,6 @@ jobs:
     - run: $(npm bin)/cordova platform add android
     - run: $(npm bin)/cordova prepare
     - run: $(npm bin)/cordova build --release
-    - name: Archive browser version
-      uses: actions/upload-artifact@v1
-      with:
-        name: browser
-        path: platforms/browser/www
-    - name: Archive android version
-      uses: actions/upload-artifact@v1
-      with:
-        name: android
-        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
