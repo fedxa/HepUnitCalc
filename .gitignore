@@ -1,0 +1,6 @@
+*~
+platforms
+node_modules
+plugins
+.gradle
+package-lock.json
