@@ -1,0 +1,29 @@
+name: Cordova testing build
+
+on:
+  push:
+    branches:
+      - testing/*
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm install cordova
+    - run: $(npm bin)/cordova platform add browser
+    - run: $(npm bin)/cordova platform add android
+    - run: $(npm bin)/cordova prepare
+    - run: $(npm bin)/cordova build --debug
+    - name: Archive browser version
+      uses: actions/upload-artifact@v1
+      with:
+        name: browser
+        path: platforms/browser/www
+    - name: Archive android version
+      uses: actions/upload-artifact@v1
+      with:
+        name: android
+        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
