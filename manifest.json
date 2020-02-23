@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "HepUnitCalc",
+  "short_name": "HepUnitCalc",
+  "version": "org.fedxa.hepunitcalc",
+  "description": "Calculator with support of the natural High Energy Physics units.",
+  "author": "Fedor Bezrukov",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}
