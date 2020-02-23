@@ -189,9 +189,12 @@ function dim_format(uv, uname="GeV") {
 //----------------------------------------------------------------------
 // Keyboard behavior
 
-// var cur_input = document.getElementById('display');
+// Select browser of mobile version
+var displayId = "display";
+var unitdisplayId = "unitdisplay";
+var cur_input = document.getElementById('display');
 var cur_caret = document.getElementById('caret');
-// var cur_cursor = 0;
+var cur_cursor = 0;
 var shift_state = false;
 // var csevent;
 
@@ -201,13 +204,13 @@ function $(elid) {
   return document.getElementById(elid);
 }
 
-function writeit(from, e) {
-  e = e || window.event;
-    let w = cur_caret.parentElement;
-    let tw = from.value;
-    Cpress();
-    insertTextAtCaret(tw);
-}
+// function writeit(from, e) {
+//   e = e || window.event;
+//     let w = cur_caret.parentElement;
+//     let tw = from.value;
+//     Cpress();
+//     insertTextAtCaret(tw);
+// }
 
 function moveIt(count, e) {
   e = e || window.event;
@@ -234,6 +237,7 @@ function moveCaret(event) {
     let p = t.parentElement;
     p.insertBefore(cur_caret, t);
     // $('setter').focus();
+    cur_input = p;
     event.stopPropagation();
 }
 
@@ -256,8 +260,19 @@ function insertCharAtCaret(char) {
 }
 
 function insertTextAtCaret(text) {
-    for (let i=0; i<text.length; i++)
-	insertCharAtCaret(text[i]);
+    if (cur_input.nodeName=="INPUT") {
+	let strPos = cur_cursor;
+	let front = (cur_input.value).substring(0, strPos);
+	let back = (cur_input.value).substring(strPos, cur_input.value.length);
+	cur_input.value = front + text + back;
+	strPos = strPos + text.length;
+	cur_input.selectionStart = strPos;
+	cur_input.selectionEnd = strPos;
+	cur_cursor = strPos;
+    } else {
+	for (let i=0; i<text.length; i++)
+	    insertCharAtCaret(text[i]);
+    }
 }
 
 function deleteAtCaret() {
@@ -267,7 +282,10 @@ function deleteAtCaret() {
 }
 
 function getValue(div) {
-    return div.innerText;
+    if (div.nodeName=="INPUT")
+	return div.value
+    else
+	return div.innerText;
 }
 
 // Dangerous - can kill caret
@@ -285,14 +303,19 @@ function deleteChar() {
 }
 
 function Cpress() {
-    let parent = cur_caret.parentElement;
-    parent.innerHTML = "";
-    parent.appendChild(cur_caret);
+    if (cur_input.nodeName=="INPUT") {
+	cur_input.value = "";
+	cur_cursor = 0;
+    } else {
+	let parent = cur_caret.parentElement;
+	parent.innerHTML = "";
+	parent.appendChild(cur_caret);
+    }
 }
 
 function compute() {
-    let valuedisplay = document.getElementById("display");
-    let unitdisplay = document.getElementById("unitdisplay");
+    let valuedisplay = document.getElementById(displayId);
+    let unitdisplay = document.getElementById(unitdisplayId);
     let resultdisplay = document.getElementById("resultdisplay");
     try {
 	let val = dim_eval(getValue(valuedisplay));
@@ -332,8 +355,8 @@ function blurHandler(event) {
 }
 
 function keyPressed(event) {
-    // cur_input = event.target;
-    // cur_cursor = event.target.selectionStart+1;
+    cur_input = event.target;
+    cur_cursor = event.target.selectionStart+1;
     // document.getElementById('resultdisplay').value = cur_cursor;
     let x = event.charCode || event.keyCode;  // Get the Unicode value
     // document.getElementById('resultdisplay').value = x;
@@ -387,8 +410,19 @@ function toggleShift() {
         shiftOn();
 }
 
+
+// This is executed at start
 // Fill the unit menu
 {
+    if (cordova.platformId == "browser") {
+	$(displayId).classList.add("hidden");
+	$(unitdisplayId).classList.add("hidden");
+	displayId = "displayBrowser";
+	unitdisplayId = "unitdisplayBrowser";
+	$(displayId).classList.remove("hidden");
+	$(unitdisplayId).classList.remove("hidden");
+	cur_input = displayId;
+    }
     function genevent(el) {
 	return function() { selUnit(el); };
     }

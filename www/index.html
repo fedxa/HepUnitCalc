@@ -14,10 +14,20 @@
       <div id="display" class="calculator-screen"
 	   onclick="moveCaretDiv(event)"><span id="caret" class="caret"></span></div>
 
+      <input id="displayBrowser" class="calculator-screen hidden" value=""
+	     onkeydown="keyPressed(event)"
+	     oninput="inputPressed(event)"
+	     onclick="clickPressed(event)" />
+      
       <div class="unitrow">
 	Convert to:
 	<div id="unitdisplay" class="unit-screen"
 	     onclick="moveCaretDiv"><span onclick="moveCaret(event)">G</span><span onclick="moveCaret(event)">e</span><span onclick="moveCaret(event)">V</span></div>
+      <input id="unitdisplayBrowser" class="unit-screen hidden" value=""
+	     onkeydown="keyPressed(event)"
+	     oninput="inputPressed(event)"
+	     onclick="clickPressed(event)"
+	     value="GeV" />
       </div>
 
       <div id="resultdisplay" class="calculator-screen"></div>

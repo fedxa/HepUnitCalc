@@ -73,6 +73,10 @@ textarea#setter {
   overflow-y: hidden;
 }
 
+.hidden {
+    display: none;
+}
+
 .caret::after {
 	content: "";
 	border-right: 2px solid white;
