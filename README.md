@@ -34,7 +34,18 @@ make sure that you have other reqirements installed
 
     $ cordova requirements android
 
-In particular, you need Android SDK https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+In particular, you need Android SDK [SDK r26.1.1](https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip). Install as
+
+    $ mkdir /opt/android-sdk-r26.1.1
+	$ cd /opt/android-sdk-r26.1.1
+	$ unzip ~/Downloads/sdk-tools-linux-4333796.zip
+    $ tools/bin/sdkmanager platform-tools "platforms;android-28" "build-tools;28.0.3"
+    $ #tools/bin/sdkmanager 'system-images;android-28;google_apis;x86_64'
+
+Export the root of the installation as
+
+    $ # export ANDROID_HOME=/opt/android-sdk-r26.1.1
+    $ export ANDROID_SDK_ROOT=/opt/android-sdk-r26.1.1
 
 Gradle build system
 

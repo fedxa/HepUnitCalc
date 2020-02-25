@@ -1,3 +1,9 @@
 {
-  "dependencies": {}
+  "dependencies": {},
+  "cordova": {
+    "platforms": [
+      "browser",
+      "android"
+    ]
+  }
 }
