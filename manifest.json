@@ -6,7 +6,13 @@
   "version": "org.fedxa.hepunitcalc",
   "description": "Calculator with support of the natural High Energy Physics units.",
   "author": "Fedor Bezrukov",
-  "icons": [],
+  "icons": [
+    {
+      "src": "res/iconGeVruler_256.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
   "orientation": "portrait",
   "start_url": "index.html"
 }
