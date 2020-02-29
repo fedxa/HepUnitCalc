@@ -16,7 +16,14 @@ jobs:
     - run: $(npm bin)/cordova platform add browser
     - run: $(npm bin)/cordova platform add android
     - run: $(npm bin)/cordova prepare
-    - run: $(npm bin)/cordova build # --release fails -- need signature?
+    - name: Decrypt sign key
+      env:
+        ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+      run: echo $ANDROID_KEYSTORE | openssl base64 -d > android.keystore        
+    - name: Build
+      env:
+        KEYSTORE_PASSWD: ${{ secrets.KEYSTORE_PASSWD }}
+      run: $(npm bin)/cordova build --release -- --keystore=android.keystore --storePassword=$KEYSTORE_PASSWD --password=$KEYSTORE_PASSWD --alias=hepunitcalc-app-key
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -26,7 +33,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: false
-        prerelease: false
+        prerelease: true
     - name: Upload Release apk
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
@@ -34,7 +41,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+        asset_path: platforms/android/app/build/outputs/apk/release/app-release.apk
         asset_name: HepUnitCalc.apk
         asset_content_type: application/vnd.android.package-archive
     - name: Deploy web version
