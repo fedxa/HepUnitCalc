@@ -1,9 +1,9 @@
 {
-  "dependencies": {},
   "cordova": {
     "platforms": [
       "browser",
       "android"
     ]
-  }
+  },
+  "devDependencies": {}
 }
